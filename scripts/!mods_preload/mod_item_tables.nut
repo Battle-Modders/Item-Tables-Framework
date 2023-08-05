@@ -5,7 +5,7 @@
 	BBClass = {
 		ItemTable = "scripts/mods/mod_item_tables/item_table"
 	},
-	ItemInfoByID = {},
+	ItemInfoByScript = {},
 	RollByProperties = [
 		"Value"
 	],
@@ -54,15 +54,14 @@
 				try
 				{
 					local item = ::new(script);
-					local id = item.getID();
-					::ItemTables.ItemInfoByID[id] <- {
-						Script = script
+					::ItemTables.ItemInfoByScript[script] <- {
+						ID = item.getID()
 					};
 					foreach (property in ::ItemTables.RollByProperties)
 					{
 						// If the `property` is in `item`, it means it is a function, so call it, otherwise it is in item.m
 						// We only support functions without parameters
-						::ItemTables.ItemInfoByID[id][property] <- ::MSU.isIn(property, item, true) ? item[property]() : item.m[property];
+						::ItemTables.ItemInfoByScript[script][property] <- ::MSU.isIn(property, item, true) ? item[property]() : item.m[property];
 					}
 				}
 				catch (error)
