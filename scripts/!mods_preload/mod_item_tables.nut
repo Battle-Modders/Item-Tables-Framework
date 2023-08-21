@@ -5,7 +5,11 @@
 	Class = {},
 	ItemInfoByScript = {},
 	RollByProperties = [
-		"Value"
+		"Value",
+		"Condition",
+		"ConditionMax",
+		"SlotType",
+		"ItemType"
 	],
 
 	function addRollByProperty( _property )
