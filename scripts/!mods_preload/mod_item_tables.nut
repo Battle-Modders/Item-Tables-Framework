@@ -32,6 +32,7 @@
 		local onInit = o.onInit;
 		o.onInit = function()
 		{
+			local ret = onInit();
 			foreach (script in ::IO.enumerateFiles("scripts/items"))
 			{
 				if (script == "scripts/items/item_container") continue;
@@ -55,7 +56,7 @@
 				}
 			}
 
-			return onInit();
+			return ret;
 		}
 	});
 });
