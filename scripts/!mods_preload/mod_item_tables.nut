@@ -2,30 +2,11 @@
 	Version = "0.1.0",
 	ID = "mod_item_tables",
 	Name = "Item Tables",
-	BBClass = {
-		ItemTable = "scripts/mods/mod_item_tables/item_table"
-	},
+	Class = {},
 	ItemInfoByScript = {},
 	RollByProperties = [
 		"Value"
 	],
-
-	LookupMap = {},
-	function findById( _itemTableID )
-	{
-		if (_itemTableID in this.LookupMap) return this.LookupMap[_itemTableID];
-	}
-
-	function add( _itemTable )
-	{
-		if (_itemTable.getID() in this.LookupMap) throw ::MSU.Exclude.DuplicateKey(_itemTable.getID());
-		this.LookupMap[_itemTableID.getID()] <- _itemTable;
-	}
-
-	function remove( _itemTableID )
-	{
-		if (_itemTableID in this.LookupMap) delete this.LookupMap[_itemTableID];
-	}
 
 	function addRollByProperty( _property )
 	{
