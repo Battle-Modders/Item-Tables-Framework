@@ -50,7 +50,9 @@
 					{
 						// If the `property` is in `item`, it means it is a function, so call it, otherwise it is in item.m
 						// We only support functions without parameters
-						::ItemTables.ItemInfoByScript[script][property] <- ::MSU.isIn(property, item, true) ? item[property]() : item.m[property];
+						if (::MSU.isIn(property, item, true)) ::ItemTables.ItemInfoByScript[script][property] <- item[property]();
+						else if (::MSU.isIn(property, item.m, true)) ::ItemTables.ItemInfoByScript[script][property] <- item.m[property];
+
 					}
 				}
 				catch (error)
