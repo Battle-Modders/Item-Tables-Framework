@@ -41,6 +41,8 @@
 				try
 				{
 					local item = ::new(script);
+					item.randomizeValues <- function() {};
+					item.create();
 					::ItemTables.ItemInfoByScript[script] <- {
 						ID = item.getID()
 					};
