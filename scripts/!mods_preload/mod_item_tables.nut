@@ -8,6 +8,7 @@
 		"Value",
 		"Condition",
 		"ConditionMax",
+		"StaminaModifier",
 		"SlotType",
 		"ItemType"
 	],
