@@ -2,6 +2,7 @@
 	Version = "0.1.0",
 	ID = "mod_item_tables",
 	Name = "Item Tables",
+	GitHubURL = "https://github.com/Battle-Modders/Item-Tables-Framework",
 	Class = {},
 	ItemInfoByScript = {},
 	RollByProperties = [
@@ -27,7 +28,10 @@
 ::mods_registerMod(::ItemTables.ID, ::ItemTables.Version, ::ItemTables.Name);
 ::mods_queue(::ItemTables.ID, "mod_msu", function() {
 
-	// ::ItemTables.Mod <- ::MSU.Class.Mod(::ItemTables.ID, ::ItemTables.Version, ::ItemTables.Name);
+	::ItemTables.Mod <- ::MSU.Class.Mod(::ItemTables.ID, ::ItemTables.Version, ::ItemTables.Name);
+
+	::ItemTables.Mod.Registry.addModSource(::MSU.System.Registry.ModSourceDomain.GitHub, ::ItemTables.GitHubURL);
+	::ItemTables.Mod.Registry.setUpdateSource(::MSU.System.Registry.ModSourceDomain.GitHub);
 
 	::mods_hookExactClass("root_state", function(o) {
 		local onInit = o.onInit;
