@@ -1,13 +1,8 @@
 ::ItemTables.Class.ItemTable <- class extends ::MSU.Class.WeightedContainer
 {
-	TableBackup = null;
-	TotalBackup = null;
-
 	constructor( _array = null )
 	{
 		base.constructor(_array);
-		this.TableBackup = {};
-		this.TotalBackup = 0;
 	}
 
 	function roll( _options = null )
@@ -27,8 +22,8 @@
 			}
 		}
 
-		this.TableBackup = clone this.Table;
-		this.TotalBackup = this.Total;
+		local tableBackup = clone this.Table;
+		local totalBackup = this.Total;
 
 		if (options.Apply != null) this.apply(options.Apply);
 
@@ -51,9 +46,8 @@
 
 		local ret = base.roll(options.Exclude);
 
-		this.Table = clone this.TableBackup;
-		this.Total = this.TotalBackup;
-		this.TableBackup.clear();
+		this.Table = tableBackup;
+		this.Total = totalBackup;
 
 		return ret;
 	}
