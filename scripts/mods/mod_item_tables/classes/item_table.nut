@@ -7,49 +7,45 @@
 
 	function roll( _options = null )
 	{
+		if (_options == null || typeof _options == "array")
+			return base.roll(_options);
+
 		local options = {
 			Exclude = null,
 			Add = null
 			Apply = null
 		}
 
-		if (_options != null)
+		foreach (key, value in _options)
 		{
-			foreach (key, value in _options)
+			if (!(key in options)) throw "invalid parameter " + key;
+			options[key] = value;
+		}
+
+		if (options.Apply != null || options.Add != null)
+		{
+			local container = clone this;
+
+			if (options.Apply != null) container.apply(options.Apply);
+
+			switch (typeof options.Add)
 			{
-				if (!(key in options)) throw "invalid parameter " + key;
-				options[key] = value;
+				case "array":
+					container.addArray(options.Add);
+					break;
+
+				case "instance":
+					container.merge(options.Add);
+					break;
+
+				default:
+					throw ::MSU.Exception.InvalidType(options.Add);
 			}
+
+			return container.roll(options.Exclude);
 		}
 
-		local tableBackup = clone this.Table;
-		local totalBackup = this.Total;
-
-		if (options.Apply != null) this.apply(options.Apply);
-
-		switch (typeof options.Add)
-		{
-			case "null":
-				break;
-
-			case "array":
-				this.addArray(options.Add);
-				break;
-
-			case "instance":
-				this.merge(options.Add);
-				break;
-
-			default:
-				throw ::MSU.Exception.InvalidType(options.Add);
-		}
-
-		local ret = base.roll(options.Exclude);
-
-		this.Table = tableBackup;
-		this.Total = totalBackup;
-
-		return ret;
+		return base.roll(options.Exclude);
 	}
 
 	function rollByProperty( _property, _options = null )
