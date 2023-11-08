@@ -30,6 +30,9 @@
 
 			switch (typeof options.Add)
 			{
+				case "null":
+					break;
+
 				case "array":
 					container.addArray(options.Add);
 					break;
