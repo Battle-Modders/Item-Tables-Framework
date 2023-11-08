@@ -1,5 +1,5 @@
 ::ItemTables <- {
-	Version = "0.1.0",
+	Version = "0.1.1",
 	ID = "mod_item_tables",
 	Name = "Item Tables",
 	GitHubURL = "https://github.com/Battle-Modders/Item-Tables-Framework",
